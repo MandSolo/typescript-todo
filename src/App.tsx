@@ -21,7 +21,7 @@ const App: FC = () => {
     setDeadline(0);
   };
 
-  const completeTask = (taskToDelete: string): void => {
+  const deleteTask = (taskToDelete: string): void => {
     setTaskList(
       taskList.filter((task) => {
         return task.task !== taskToDelete;
@@ -62,7 +62,7 @@ const App: FC = () => {
         <h5>Your current tasks:</h5>
         {taskList.length > 0 ? (
           taskList.map((task: ITask, key: number) => {
-            return <Task key={key} task={task} completeTask={completeTask} />;
+            return <Task key={key} task={task} deleteTask={deleteTask} />;
           })
         ) : (
           <p>You have no tasks to do!</p>

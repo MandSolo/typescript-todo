@@ -3,10 +3,10 @@ import { ITask } from "../Interfaces";
 
 interface Props {
   task: ITask;
-  completeTask(taskToDelete: string): void;
+  deleteTask(taskToDelete: string): void;
 }
 
-const Task = ({ task, completeTask }: Props) => {
+const Task = ({ task, deleteTask }: Props) => {
   return (
     <div className="task">
       <div>
@@ -16,7 +16,7 @@ const Task = ({ task, completeTask }: Props) => {
       <button
         className="deleteButton"
         onClick={() => {
-          completeTask(task.task);
+          deleteTask(task.task);
         }}
       >
         Delete Task
