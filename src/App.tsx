@@ -30,31 +30,33 @@ const App: FC = () => {
   };
 
   return (
-    <>
+    <div className="root">
       <h1 className="title">Typescript TODO List</h1>
       <div className="formContainer">
-      <div className="form">
-        <h5>Add a New Task:</h5>
-        <label htmlFor="task">What do you need to do?</label>
-        <input
-          type="text"
-          id="task"
-          name="task"
-          value={task}
-          placeholder="Task..."
-          onChange={handleChange}
-        />
-        <label htmlFor="deadline">How many days left to complete?</label>
-        <input
-          type="text"
-          id="deadline"
-          name="deadline"
-          value={deadline}
-          placeholder="No. of days..."
-          onChange={handleChange}
-        />
-        <button onClick={addTask}>Add to list</button>
-      </div>
+        <div className="form">
+          <h5>Add a New Task:</h5>
+          <label htmlFor="task">What do you need to do?</label>
+          <input
+            type="text"
+            id="task"
+            name="task"
+            value={task}
+            placeholder="Task..."
+            onChange={handleChange}
+          />
+          <label htmlFor="deadline">How many days left to complete?</label>
+          <input
+            type="text"
+            id="deadline"
+            name="deadline"
+            value={deadline}
+            placeholder="No. of days..."
+            onChange={handleChange}
+          />
+          <button onClick={addTask} className="addButton">
+            Add to list
+          </button>
+        </div>
       </div>
       <div className="list">
         <h5>Your current tasks:</h5>
@@ -66,7 +68,7 @@ const App: FC = () => {
           <p>You have no tasks to do!</p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
