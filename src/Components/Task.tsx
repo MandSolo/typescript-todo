@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ITask } from "../Interfaces";
 
@@ -11,10 +10,15 @@ const Task = ({ task, completeTask }: Props) => {
   return (
     <div className="task">
       <div>
-       <p>Todo: <span>{task.task}</span></p>
-        <p>Days left: <span>{task.deadline}</span></p>
+        <p>
+          Todo: <span>{task.task}</span>
+        </p>
+        <p>
+          Days left: <span>{task.deadline}</span>
+        </p>
       </div>
-      <button className="deleteButton"
+      <button
+        className="deleteButton"
         onClick={() => {
           completeTask(task.task);
         }}
