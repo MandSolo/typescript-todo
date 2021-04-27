@@ -1,11 +1,12 @@
 import React, { FC, ChangeEvent, useState } from "react";
 import "./App.css";
+import Task from "./Components/Task";
 import { ITask } from "./Interfaces";
 
 const App: FC = () => {
   const [task, setTask] = useState<string>("");
   const [deadline, setDeadline] = useState<number>(0);
-  const [list, setList] = useState<ITask[]>([]);
+  const [taskList, setTaskList] = useState<ITask[]>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     event.target.name === "task"
@@ -15,16 +16,26 @@ const App: FC = () => {
 
   const addTask = (): void => {
     const newTask = { task: task, deadline: deadline };
-    setList([...list, newTask]);
+    setTaskList([...taskList, newTask]);
     setTask("");
     setDeadline(0);
   };
 
+  const completeTask = (taskToDelete: string): void => {
+    setTaskList(
+      taskList.filter((task) => {
+        return task.task !== taskToDelete;
+      })
+    );
+  };
+
   return (
-    <div className="container">
+    <>
       <h1 className="title">Typescript TODO List</h1>
-      <form className="form">
-        <label htmlFor="task">Task that needs doing:</label>
+      <div className="formContainer">
+      <div className="form">
+        <h5>Add a New Task:</h5>
+        <label htmlFor="task">What do you need to do?</label>
         <input
           type="text"
           id="task"
@@ -33,7 +44,7 @@ const App: FC = () => {
           placeholder="Task..."
           onChange={handleChange}
         />
-        <label htmlFor="deadline">Days left to complete:</label>
+        <label htmlFor="deadline">How many days left to complete?</label>
         <input
           type="text"
           id="deadline"
@@ -43,9 +54,19 @@ const App: FC = () => {
           onChange={handleChange}
         />
         <button onClick={addTask}>Add to list</button>
-      </form>
-      <div className="list">list goes here</div>
-    </div>
+      </div>
+      </div>
+      <div className="list">
+        <h5>Your current tasks:</h5>
+        {taskList.length > 0 ? (
+          taskList.map((task: ITask, key: number) => {
+            return <Task key={key} task={task} completeTask={completeTask} />;
+          })
+        ) : (
+          <p>You have no tasks to do!</p>
+        )}
+      </div>
+    </>
   );
 };
 
