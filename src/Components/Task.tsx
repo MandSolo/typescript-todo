@@ -10,12 +10,8 @@ const Task = ({ task, completeTask }: Props) => {
   return (
     <div className="task">
       <div>
-        <p>
-          Todo: <span>{task.task}</span>
-        </p>
-        <p>
-          Days left: <span>{task.deadline}</span>
-        </p>
+        <p>Todo: {task.task}</p>
+        <p>Days left: {task.deadline}</p>
       </div>
       <button
         className="deleteButton"
